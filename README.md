@@ -1,2 +1,2 @@
-# sample-code
-Publicly accessible sample code for use with the CartoType library.
+# CartoType-Public
+Publicly accessible code for use with the CartoType library.
