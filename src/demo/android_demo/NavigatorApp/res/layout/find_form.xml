@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/findLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- User can search text -->
+    <EditText
+        android:id="@+id/find_form_editText1"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:ems="7"
+        android:hint="Search text" >
+
+        <requestFocus />
+    </EditText>
+
+    <!-- User can clear previous search text -->
+    <Button
+        android:id="@+id/find_form_button_text_clear"
+        android:layout_width="31dp"
+        android:layout_height="31dp"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/find_form_editText1"
+        android:layout_alignParentTop="true"
+        android:background="@android:drawable/android:ic_notification_clear_all" />
+
+    <!-- User can execute search -->
+        <Button
+        android:id="@+id/find_form_button_search"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/find_form_button_text_clear"
+        android:background="@android:drawable/android:ic_menu_search" />
+        
+        <!-- User can dismiss search window -->
+                <Button
+        android:id="@+id/find_form_button_dismiss"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="5dip"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@android:drawable/android:ic_delete" />
+    
+    <TextView
+        android:id="@+id/find_form_textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/find_form_editText1"
+        android:text="Match:"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#FFFFFF" />
+
+    <!-- User can specify type of search -->
+    <RadioGroup
+        android:id="@+id/find_form_radioGroup1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/find_form_textView2"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/find_form_radio0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Exact"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+
+        <RadioButton
+            android:id="@+id/find_form_radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Start"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+
+        <RadioButton
+            android:id="@+id/find_form_radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fuzzy"
+            android:layout_marginRight="15dip"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+    </RadioGroup>
+
+    <!-- Used to inform user when nothing is found -->
+    <TextView
+        android:id="@+id/find_form_textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/find_form_radioGroup1"
+        android:text="" />
+
+    <!-- The data rows in this ListView are styled by find_results_row_item.xml -->
+
+    <ListView
+        android:id="@+id/find_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/find_form_radioGroup1"
+        android:fillViewport="true"
+        android:scrollbars="vertical" >
+    </ListView>
+
+</RelativeLayout>

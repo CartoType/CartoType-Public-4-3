@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/about_textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        tools:context=".AboutActivity" />
+
+    <TextView
+        android:id="@+id/about_textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/about_textView2"
+        android:text="This is a demonstration of the CartoType map developer's API; a reliable and robust API for displaying and manipulating off-line maps. Capabilities also include searching and routing. http://www.cartotype.com\n\nMaps are (c) CartoType Ltd.\n\nMap data is  (c) OpenStreetMap http:www.openstreetmap.org/copyright and available under ODbL 1.0."
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>

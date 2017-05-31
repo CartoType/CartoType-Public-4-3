@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+
+    <string name="app_name">NavigatorApp</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_about">About This App</string>
+    <string name="title_activity_map_list">Get More Maps</string>
+    <string name="title_activity_map_change">Change Map</string>
+    <string name="title_activity_settings">Change distance units</string>
+
+</resources>

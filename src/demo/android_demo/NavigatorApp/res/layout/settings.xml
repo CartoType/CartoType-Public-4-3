@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RadioGroup
+        android:id="@+id/radioUnits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop = "50dp"
+        android:layout_marginBottom = "30dp" >
+        
+        <RadioButton
+            android:id="@+id/radioUnitsMetric"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Metric (km, metres)" 
+            android:checked="true" />
+ 
+        <RadioButton
+            android:id="@+id/radioUnitsImperial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Imperial (miles)" />
+ 
+    </RadioGroup>
+ 
+    <Button
+        android:id="@+id/settings_btnDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+    
+</LinearLayout>

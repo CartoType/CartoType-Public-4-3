@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/turnByTurnLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+   
+    <ImageView
+        android:id="@+id/turn_by_turn_imageTurnType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:padding="5dp"
+        android:contentDescription="Turn graphic"
+        android:src="@drawable/turn0" />
+     
+         <TextView
+        android:id="@+id/turn_by_turn_FirstTurnDist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/turn_by_turn_imageTurnType"
+        android:text="(dis)"
+        android:textSize="35sp" 
+        android:textColor="#FFFFFF" />
+         
+         <TextView
+        android:id="@+id/turn_by_turn_StreetTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/turn_by_turn_imageTurnType"
+        android:layout_below="@+id/turn_by_turn_FirstTurnDist"
+        android:text="(toStreet)"
+        android:ellipsize="end"
+        android:maxLines="1"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+         
+         <TextView
+        android:id="@+id/turn_by_turn_Message1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/turn_by_turn_imageTurnType"
+        android:text="(other message)"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+         
+    <TextView
+        android:id="@+id/turn_by_turn_DistLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="(dist)"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/turn_by_turn_TimeLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/turn_by_turn_DistLeft"
+        android:layout_alignParentRight="true"
+        android:maxLines="1"
+        android:text="(time)"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/turn_by_turn_StreetFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/turn_by_turn_DistLeft"
+        android:text="(from street)"
+        android:ellipsize="end"
+        android:maxLines="1"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+
+</RelativeLayout>

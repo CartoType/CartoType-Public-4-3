@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  
+Formats individual rows in a ListView showing available maps.
+ -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:paddingLeft="10sp" >
+
+    <TextView
+        android:id="@+id/maplist_file_name"
+        android:layout_toLeftOf="@+id/map_change_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/map_change_button"
+        android:background="#FFF" />
+
+    <Button
+        android:id="@+id/map_change_button"
+        android:layout_alignParentRight="true" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="View" />
+
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cartotype.navigatorappdemo"
+    android:versionCode="9"
+    android:versionName="1.08" >
+
+    <!-- Turn-by-turn navigation not fully tested at level 8 -->
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="22" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:hardwareAccelerated="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" android:allowBackup="true">
+        <activity
+            android:name=".NavigatorAppActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cartotype.navigatorappdemo.NavigatorAppActivity" />
+        </activity>
+        <activity
+            android:name=".MapDownloadActivity"
+            android:label="@string/title_activity_map_list" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cartotype.navigatorappdemo.NavigatorAppActivity" />
+        </activity>
+        <activity
+            android:name=".MapChangeActivity"
+            android:label="@string/title_activity_map_change" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cartotype.navigatorappdemo.NavigatorAppActivity" />
+        </activity>
+         <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cartotype.navigatorappdemo.NavigatorAppActivity" />
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<!-- 
+Used by Propeties > Builders - CopyLatestCartotypeLibs rule
+
+You only need this you have the full CartoType source and want to build
+your own newest versions of cartotype.jar and keep NavigatorApp up-to-date with 
+them.
+
+Otherwise, just make sure that the following project files exist:
+	libs/cartotype.jar
+	libs/armeabi/libcartotyp.se
+
+This is a configuration of the Ant build system to copy in libs/armeabi/libcartotyp.so 
+
+Question: 
+
+Why copy them, why not just referemce them exernally?
+
+Answer:
+
+apk build assumes that native .so libraries are ALWAYS in the current project 
+libs folder. Referencing external non-jar libraries does not appear possible.
+--> 
+<project name="NavigatorApp" default="CopyCartoTypeNativeLibrary">
+  <target name="CopyCartoTypeNativeLibrary" description="Copy latest version of armeabi/libcartotype.so">
+        <!-- Relative location of libcartotype.so folder -->
+        <property name="mysource" value="../../../main/single_library/android/libs/" />
+        <property name="mytarget" value="libs/" />
+        <!--  See http://ant.apache.org/manual/Tasks/copy.html -->
+        <!--  See http://ant.apache.org/manual/Types/fileset.html -->
+        <!--  See http://www.andyjarrett.co.uk/blog/index.cfm/2007/6/24/Ant-Copying-files-and-directories -->
+        <!-- 2013-03-08 The necessity to do this appears to have been removed in a recent APT update
+        <copy todir="${mytarget}" preservelastmodified="true">
+        	<fileset dir="${mysource}"/>
+   		</copy>       
+   		-->
+   		<!-- Uggh! jar files only get dexed IF they are in the project folder! -->
+   		<copy file="../../../main/platform/android/java/cartotype.jar" todir="libs"/>  
+   		
+   		<!--  Grab libcartotype.so -->
+        <!--  See http://ant.apache.org/manual/Types/zipfileset.html -->
+        <!-- 
+        Currently, libcartotype.so cannot be put in cartotype.jar/lib/armeabi/libcartotype.so
+        as it triggers an Eclipse Android SDK Plugin 
+        bug in any project that tries to use it. 
+        This code can be removed when the bug is fixed
+        http://code.google.com/p/android/issues/detail?id=17861
+        -->
+        <copy todir="${mytarget}" preservelastmodified="true">
+        	<fileset dir="${mysource}"/>
+        </copy> 
+  </target>
+</project>

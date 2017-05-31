@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/findAddrLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/findAddrLayout_Top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <TextView
+            android:id="@+id/findaddr_form_textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:text="Fill in one or more:"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#FFFFFF" />
+
+        <!-- User can clear previous search text -->
+
+        <Button
+            android:id="@+id/findaddr_form_button_text_clear"
+            android:layout_width="31dp"
+            android:layout_height="31dp"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="right|center_vertical"
+            android:layout_toLeftOf="@+id/findaddr_form_button_search"
+            android:background="@android:drawable/android:ic_notification_clear_all" />
+
+        <!-- User can execute search -->
+
+        <Button
+            android:id="@+id/findaddr_form_button_search"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="10dip"
+            android:layout_toLeftOf="@+id/findaddr_form_button_dismiss"
+            android:background="@android:drawable/android:ic_menu_search" />
+
+        <!-- User can dismiss search window -->
+
+        <Button
+            android:id="@+id/findaddr_form_button_dismiss"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="5dip"
+            android:background="@android:drawable/android:ic_delete" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/findAddrLayout_Form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/findAddrLayout_Top"
+        android:orientation="vertical" >
+
+        <!-- User can search: building -->
+
+        <EditText
+            android:id="@+id/findaddr_form_editText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:ems="7"
+            android:hint="Building number or name" >
+
+            <requestFocus />
+        </EditText>
+
+        <!-- User can search: Point of interest -->
+
+        <EditText
+            android:id="@+id/findaddr_form_editText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/findaddr_form_editText1"
+            android:ems="7"
+            android:hint="Point of interest" >
+        </EditText>
+
+        <!-- User can search: Street -->
+
+        <EditText
+            android:id="@+id/findaddr_form_editText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/findaddr_form_editText2"
+            android:ems="7"
+            android:hint="Street" >
+        </EditText>
+
+        <!-- User can search: City, town, village or hamlet -->
+
+        <EditText
+            android:id="@+id/findaddr_form_editText4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/findaddr_form_editText3"
+            android:ems="7"
+            android:hint="City, town, village or hamlet" >
+        </EditText>
+
+        <!-- User can search: County, municipality, etc. -->
+
+        <EditText
+            android:id="@+id/findaddr_form_editText5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/findaddr_form_editText4"
+            android:ems="7"
+            android:hint="County, municipality, etc." >
+        </EditText>
+
+        <!-- User can search: State or province -->
+
+        <EditText
+            android:id="@+id/findaddr_form_editText6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/findaddr_form_editText5"
+            android:ems="7"
+            android:hint="State or province" >
+        </EditText>
+
+        <!-- User can search: Country -->
+
+        <EditText
+            android:id="@+id/findaddr_form_editText7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/findaddr_form_editText6"
+            android:ems="7"
+            android:hint="Country" >
+        </EditText>
+
+        <!-- User can search: Postcode or ZIP -->
+
+        <EditText
+            android:id="@+id/findaddr_form_editText8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/findaddr_form_editText7"
+            android:ems="7"
+            android:hint="Postcode or ZIP" >
+        </EditText>
+    </RelativeLayout>
+
+    <!-- The data rows in this ListView are styled by find_results_row_item.xml -->
+<!--  causes  findAddrLayout_Top to be invisible too android:visibility="invisible"  -->
+    <RelativeLayout
+        android:id="@+id/findAddrLayout_Results"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/findAddrLayout_Form"      
+        android:orientation="vertical"
+        >
+
+        <Button
+            android:id="@+id/find_results_button_search_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Search Again"
+            android:visibility="invisible" />
+
+        <ListView
+            android:id="@+id/findaddr_list"
+            android:layout_below="@+id/find_results_button_search_again"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"         
+            android:fillViewport="true"
+            android:scrollbars="vertical" >
+        </ListView>
+    </RelativeLayout>
+
+</RelativeLayout>
