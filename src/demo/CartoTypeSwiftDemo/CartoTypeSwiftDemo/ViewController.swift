@@ -68,7 +68,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate
         return true
         }
 
-    func RadiansToDegrees(_ aRadians:Double)->Double { return aRadians / M_PI * 180.0 }
+    func RadiansToDegrees(_ aRadians:Double)->Double { return aRadians / Double.pi * 180.0 }
     
     func setRouteEnd(_ aPoint: CGPoint)
         {
