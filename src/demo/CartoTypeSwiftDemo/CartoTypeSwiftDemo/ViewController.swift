@@ -75,10 +75,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate
         m_route_start = m_route_end;
         m_route_end.x = Double(aPoint.x * m_ui_scale);
         m_route_end.y = Double(aPoint.y * m_ui_scale);
-        m_framework?.convertPoint(&m_route_end, from: ScreenCoordType, to: DegreeCoordType);
+        m_framework?.convert(&m_route_end, from: ScreenCoordType, to: DegreeCoordType);
         if (m_route_start.x != 0 && m_route_start.y != 0)
             {
-            let error = m_framework?.startNavigationFrom(m_route_start, startCoordType: DegreeCoordType, to: m_route_end, endCoordType: DegreeCoordType);
+            let error = m_framework?.startNavigation(from: m_route_start, start: DegreeCoordType, to: m_route_end, end: DegreeCoordType);
             if (error == 0)
                 {
                 m_view!.m_map_image = m_framework!.getMapBitmap().takeUnretainedValue();
