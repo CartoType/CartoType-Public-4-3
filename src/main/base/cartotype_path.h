@@ -100,6 +100,8 @@ class MWritableContour
 	virtual void ReduceSizeTo(size_t aPoints) = 0;
 	/** Set the number of points to aPoints. The address of the points may change. */
 	virtual void SetSize(size_t aPoints) = 0;
+    /** Return true if this contour is closed. */
+    virtual bool Closed() = 0;
 
 	/** Offset all the points by (aDx,aDy). */
 	void Offset(int32 aDx,int32 aDy)
@@ -114,40 +116,16 @@ class MWritableContour
 			}
 		}
 
-    void Simplify(double aResSquared)
-        {
-        if (Points() < 3)
-            return; // Objects with fewer than 3 points can't be simplified because start and end points must be kept.
-        const TOutlinePoint* source_point = Point() + 1;
-        const TOutlinePoint* source_end = Point() + Points() - 1;
-        TOutlinePoint* dest_point = Point();
-        while (source_point < source_end)
-            {
-            double dx = source_point->iX - dest_point->iX;
-            double dy = source_point->iY - dest_point->iY;
-            if (dx * dx + dy * dy >= aResSquared)
-                {
-                dest_point++;
-                if (dest_point != source_point)
-                    *dest_point = *source_point;
-                }
-            source_point++;
-            }
-        dest_point++;
-        *dest_point++ = *source_end;
-        ReduceSizeTo(dest_point - Point());
-        }
+    void Simplify(double aResolutionArea);
 	};
 
 /**
 The data for a contour. The simplest implementation of
 writable contour data.
 */
-class TSimpleContourData: public MWritableContour
+template<bool aClosed> class TSimpleContourData: public MWritableContour
 	{
 	public:
-    TSimpleContourData(): iPoint(nullptr), iPoints(0) { }
-
 	TOutlinePoint* Point() override { return iPoint; }
     size_t Points() override { return iPoints; }
 	void ReduceSizeTo(size_t aPoints) override { iPoints = aPoints; }
@@ -157,9 +135,10 @@ class TSimpleContourData: public MWritableContour
         if (aPoints < iPoints)
             iPoints = aPoints;
         }
+    bool Closed() override { return aClosed; }
 
-	TOutlinePoint* iPoint;
-	size_t iPoints;
+	TOutlinePoint* iPoint = nullptr;
+	size_t iPoints = 0;
 	};
 
 /**
@@ -400,6 +379,7 @@ class CContour: public MPath, public MWritableContour
 		assert(aPoints <= iPoint.size());
 		iPoint.resize(aPoints);
 		}
+    bool Closed() override { return iClosed; }
 
 	/** Append a point to the contour, but only if it differs from the previous point or is a control point. */
 	void AppendPoint(const TOutlinePoint& aPoint)

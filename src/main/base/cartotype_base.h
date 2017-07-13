@@ -478,9 +478,10 @@ class TRect
                iBottomRight.iX >= aRect.iBottomRight.iX &&
                iBottomRight.iY >= aRect.iBottomRight.iY;
         }
+    bool IsOnEdge(const TPoint& aPoint) const;
     bool Intersects(const TRect& aRect) const;
     bool Intersects(const TPoint& aStart,const TPoint& aEnd,
-                              TPoint* aIntersectionStart = nullptr,TPoint* aIntersectionEnd = nullptr) const;
+                    TPoint* aIntersectionStart = nullptr,TPoint* aIntersectionEnd = nullptr) const;
     void Intersection(const TRect& aRect);
     void Combine(const TRect& aRect);
     void Combine(const TPoint& aPoint);

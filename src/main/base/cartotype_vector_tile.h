@@ -212,18 +212,18 @@ class TTileRequest: public TTileSpec
 class TVectorObjectStyle
     {
     public:
-    TVectorObjectStyle(): m_line_width(0), m_border_width(0) { }
-
     /** The fill color for lines and polygons. */
     TColor m_color;
     /** If non-null, the bitmap used as a texture to fill polygons; overrides m_color. */
     std::shared_ptr<CBitmap> m_texture;
     /** The line width; not used for polygons. */
-    double m_line_width;
+    double m_line_width = 0;
+    /** The line cap type */
+    TLineCap m_line_cap = ELineCapRound;
     /** The color of the border. */
     TColor m_border_color;
     /** The border width; for lines this is the width of an outer line to be drawn before the main line. */
-    double m_border_width;
+    double m_border_width = 0;
     /** If not empty, an array of dashes and gaps to be used for lines, and for polygon borders. */
     std::vector<float> m_dash_array;
     };
@@ -277,16 +277,18 @@ class CVectorTileMapStore
     const std::shared_ptr<CMapStyle> MapStyle() const { return m_style; }
     const std::vector<TVectorObjectGroup>& ObjectGroupArray() const { return m_object_group_array; }
     const TTileSpec& TileSpec() const { return m_tile_spec; }
+    const TRect& TileBounds() const { return m_tile_bounds; }
 
     private:
     void GetGroups();
     void GetGroupsForLayers(size_t aStartLayer,size_t aEndLayer,int aPhase);
     void GetGroupsForLayerGroup(const CMapLevelStore& aStore,size_t aStart,size_t aEnd,int aPhase);
 
-    std::shared_ptr<CMapStore> m_map_store; // the map store, projected to the rectangle (0,0,32768,32768)
+    std::shared_ptr<CMapStore> m_map_store; // the map store, projected to the rectangle (0,0,32768,32768) if aProjectTiles is true in the constructor
     std::shared_ptr<CMapStyle> m_style;
     std::vector<TVectorObjectGroup> m_object_group_array;
     TTileSpec m_tile_spec;
+    TRect m_tile_bounds; // the tile bounds; if aProjectTiles is true in the constructor, this is (0,0,32768,32768)
     };
 
 class CVectorTile

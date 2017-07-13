@@ -503,6 +503,7 @@ class CFramework: public MNavigatorObserver
                      TStringMatchMethod aMatchMethod,const CString& aLayers,const CString& aAttribs);
     TResult FindAddress(CMapObjectArray& aObjectArray,size_t aMaxObjectCount,const CAddress& aAddress,bool aFuzzy = false);
     TResult FindAddressPart(CMapObjectArray& aObjectArray,size_t aMaxObjectCount,const CString& aText,TAddressPart aAddressPart,bool aFuzzy,bool aIncremental);
+    TResult FindBuildingsNearStreet(CMapObjectArray& aObjectArray,const CMapObject& aStreet);
     TResult FindPolygonsContainingPoint(CMapObjectArray& aObjectArray,size_t aMaxObjectCount,double aX,double aY,TCoordType aCoordType);
     TResult FindPointsInPolygon(CMapObjectArray& aObjectArray,size_t aMaxObjectCount,const double* aX,const double* aY,size_t aCoords,TCoordType aCoordType);
 
