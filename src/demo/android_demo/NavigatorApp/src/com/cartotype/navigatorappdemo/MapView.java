@@ -55,12 +55,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cartotype.Address;
-import com.cartotype.Framework;
-import com.cartotype.Legend;
-import com.cartotype.MapObject;
-import com.cartotype.RoadType;
-import com.cartotype.Turn;
+import com.cartotype.*;
 
 /**
  * This implements a display of a CartoType map.
@@ -605,7 +600,7 @@ class MapView extends View implements OnTouchListener, LocationListener,
 					// no label,
 					// ignore them.
 
-					String summary = mapObject.getGeoCodeSummary(3, null);
+					String summary = mapObject.getGeoCodeSummary();
 
 					if (!duplicates.containsKey(summary))
 						{
@@ -999,7 +994,7 @@ class MapView extends View implements OnTouchListener, LocationListener,
 							}
 
 						listMap.add(new FindListItem(mapObject,mapObject.getLabel(),
-								mapObject.getGeoCodeSummary(2, null),
+								mapObject.getGeoCodeSummary(),
 								longitude, latitude, size));
 						}
 
@@ -1799,6 +1794,7 @@ class MapView extends View implements OnTouchListener, LocationListener,
 					getMap();
 					invalidate();
 					}
+
 				return true;
 			}
 
@@ -2686,82 +2682,10 @@ class MapView extends View implements OnTouchListener, LocationListener,
 
 			case NavigationState.TURN:
 
-				iNavMessage1 = null;
-
+				iNavMessage1 = iFirstTurn.iInstructions;
 				iNavMsgFirstTurnType = iFirstTurn.iTurnType;
-				iFirstTurnDistStr = formatDistance(iFirstTurnDistance);
-
-				// Figure out what street we are coming FROM
-				iNavMsgStreetFrom = iFirstTurn.iFromName;
-				if (!iNavMsgStreetFrom.equals(null)
-						&& !iNavMsgStreetFrom.equals(""))
-					{
-					if (!iFirstTurn.iFromRef.equals(""))
-						iNavMsgStreetFrom += " (" + iFirstTurn.iFromRef + ")";
-					} else
-					{
-					if (!iFirstTurn.iFromRef.equals(null)
-							&& !iFirstTurn.iFromRef.equals(""))
-						{
-						iNavMsgStreetFrom = iFirstTurn.iFromRef;
-
-						// Test for special case of a slip road with parent's
-						// ref
-						if ((iFirstTurn.iFromRoadType & RoadType.RAMP_ROAD_TYPE_FLAG) != 0)
-							{
-							// OSM motorway_slip
-							iNavMsgStreetFrom += " slip road";
-							}
-
-						} else
-						{
-						// Cannot identify from name nor ref
-						iNavMsgStreetFrom = getRoadType(iFirstTurn.iToRoadType);
-						if (iNavMsgStreetFrom.equals(""))
-							iNavMsgStreetFrom = "Unnamed street";
-						}
-					}
-
-				// Figure out what street we are going TO
-				iNavMsgStreetTo = iFirstTurn.iToName;
-				if (!iNavMsgStreetTo.equals(null)
-						&& !iNavMsgStreetTo.equals(""))
-					{
-					if (!iFirstTurn.iToRef.equals(""))
-						// Can identify from both name and ref.
-						iNavMsgStreetTo += " (" + iFirstTurn.iToRef + ")";
-					} else
-					{
-					if (!iFirstTurn.iToRef.equals(""))
-						{
-
-						// Can identify from just ref, (there is no name)
-						iNavMsgStreetTo = iFirstTurn.iToRef;
-
-						// Test for special case of a slip road (access/exit
-						// ramps) with parent's
-						// ref
-						if ((iFirstTurn.iFromRoadType & RoadType.RAMP_ROAD_TYPE_FLAG) != 0)
-							{
-							// OSM motorway_slip
-							iNavMsgStreetTo += " slip road";
-							}
-						} else
-						{
-						// Cannot identify from name nor ref
-
-						// Test for special case of a slip road (typically
-						// but not always have no name or ref)
-						iNavMsgStreetTo = getRoadType(iFirstTurn.iToRoadType);
-						if (iNavMsgStreetTo.equals(""))
-							iNavMsgStreetTo = "Unnamed street";
-						}
-					}
-
-				if (!iSecondTurn.iContinue
-						&& (!iSecondTurn.iFromName.equals(iSecondTurn.iToName)))
-					iNavMsgSecondTurn = "Then " + iSecondTurn.TurnCommand()
-							+ " after " + (int) iSecondTurnDistance + "m";
+				if (iSecondTurn.iTurnType != Turn.TURN_NONE)
+					iNavMsgSecondTurn = "THEN: " + iSecondTurn.iInstructions;
 				break;
 
 			case NavigationState.TURN_ROUND:
