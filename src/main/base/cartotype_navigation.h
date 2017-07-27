@@ -177,7 +177,8 @@ class CRouteSegment
         iDistance(0),
         iTime(0),
         iTurnTime(0),
-        iSection(0)
+        iSection(0),
+        iRestricted(false)
         {
         }
     TResult WriteAsXml(MOutputStream& aOutput,const CProjection& aProjection) const;
@@ -213,6 +214,8 @@ class CRouteSegment
     TTurn iTurn;
     /** If this segment is not a 'continue' segment, instructions for this segment and following 'continue' segments. */
     CString iInstructions;
+    /** True if this segment is restricted: for example, a private access road. */
+    bool iRestricted;
     };
 
 /** Information about the nearest road (in fact, the nearest routable map object) to a certain point. */
@@ -581,10 +584,11 @@ class CRoute
     void GetPointAtTime(double aTimeInSeconds,TNearestSegmentInfo& aInfo) const;
     void Append(const CRoute& aRoute);
     std::unique_ptr<CRoute> Copy() const;
+    std::unique_ptr<CRoute> CopyWithoutRestrictedSegments() const;
     void CreateInstructions(CMap& aMap,const char* aLocale);
     double TollRoadDistance() const;
     void AppendSegment(const Router2::TJunctionInfo& aBestArcInfo,const CString& aJunctionName,const CString& aJunctionRef,const CContour& aContour,
-                       const CString& aName,const CString& aRef,TRoadType aRoadType,double aMaxSpeed,double aDistance,double aTime,int32 aSection);
+                       const CString& aName,const CString& aRef,TRoadType aRoadType,double aMaxSpeed,double aDistance,double aTime,int32 aSection,bool aRestricted);
 
     /** An array of route segments representing the route. */
     std::vector<std::unique_ptr<CRouteSegment>> iRouteSegment;
